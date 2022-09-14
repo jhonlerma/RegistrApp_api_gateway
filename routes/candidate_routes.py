@@ -32,9 +32,10 @@ def create_candidate(political_party_id):
 
 
 @candidate_module.put('/<string:id>')
+#@role("Admin")
 def update_candidate(id):
-    controller.update(id, request.get_json())
-    return jsonify({}), 204
+    response,code = controller.update(id,request.get_json())
+    return jsonify(response),code
 
 
 @candidate_module.delete('/<string:id>')
