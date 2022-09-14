@@ -1,17 +1,30 @@
+from distutils.command.config import config
+from http.client import CONFLICT
+from urllib import response
+
 from dotenv import dotenv_values
-import requests
 config = dotenv_values('.env')
+import requests
 
 class table():
-  def __init__(self):
-    pass
-  
-  def create(self, data):
-    headers = {
-      "Content-Type": "application/json"
-    }
-    response = requests.get(url=f"{config['URL_ACADEMIC']}/table/list",json=data, headers=headers)
-    print(response.status_code)
-    if response.status_code == 201:
-      return response.json(), 200
-    return response.json(), 400
+    def __init__(self) -> None:
+        pass
+    
+    def get_all(self, data):
+        #exp_time= int(config['JWT_EXPIRATION'])
+        headers = {
+            "Content-Type": "application/json"
+        }
+        response= requests.get(url=(f"{config['URL_RESULTS']}/table/list"),json=data,headers=headers)
+        if response.status_code == 200:
+            return response.json(), 200
+        return response.json() 
+
+    def get_by_id(self, id):
+        headers = {
+            "Content-Type": "application/json"
+        }
+        response = requests.get(url=f"{config['URL_RESULTS']}/table/{id}", headers=headers)
+        if response.status_code == 200:
+            return response.json(), 200
+        return response.json() 
