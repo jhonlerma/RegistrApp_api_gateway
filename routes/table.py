@@ -5,10 +5,8 @@ from decorators.token_decorator import role, token
 table_module = Blueprint("table",__name__)
 controller = table()
 
-@table_module.post('/')
+@table_module.get('/')
 @token
-@role("Admin")
-def create():
-  response, code = controller.create(request.get_json())
-  return jsonify(response), code
-  # return jsonify({}), 200
+@role("adminitrator")
+def get_results():
+    return jsonify(controller.create(request.args.to_dict()))
