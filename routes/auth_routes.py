@@ -8,6 +8,8 @@ auth_module =Blueprint("auth",__name__)
 
 controller =AuthContoller()
 
-@ auth_module.post('/')
+
+@auth_module.post('/')
 def login():
-    return jsonify(controller.login(request.get_json))
+  response, code = controller.login(request.get_json())
+  return jsonify(response), code
