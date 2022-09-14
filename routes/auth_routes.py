@@ -10,4 +10,5 @@ controller =AuthContoller()
 
 @ auth_module.post('/')
 def login():
+    print(request.get_data)
     return jsonify(controller.login(request.get_json))
