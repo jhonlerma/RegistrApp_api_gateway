@@ -16,6 +16,6 @@ class AuthContoller():
         headers = {
             "Content-Type": "application/json"
         }
-        response= requests.post(f"{config['URL_AUTH']}/api/auth/")
-        print(response)
-        return{}
+        response= requests.post(url=(f"{config['URL_AUTH']}/auth/"),json=data,headers=headers)
+        print(response.json())
+        return response.json()
