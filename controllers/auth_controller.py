@@ -27,7 +27,6 @@ class AuthContoller():
                 'id': user['id'],
                 'role':user['role']['name']
             },expires_delta=expires)
-            print(response.json())
             return {
                 'id': user['id'],
                 "access_token":access_token

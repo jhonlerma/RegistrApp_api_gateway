@@ -24,7 +24,7 @@ def token(f):
         return f(*args,**kwargs)
     return decorated
 
-def role(role):
+def role():
   def inner_decorator(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -32,7 +32,8 @@ def role(role):
         headers = {
           "Content-Type": "application/json"
         }
-        response = requests.get(f"{config['URL_AUTH']}roles/{role}", headers=headers)
+        http_args= request.args.to_dict()
+        response = requests.get(f"{config['URL_AUTH']}roles/{http_args['user_id']['role']}", headers=headers)
         if response.status_code == 200:
           permission = response.json()
           flag = False

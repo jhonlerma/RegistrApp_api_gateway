@@ -7,11 +7,11 @@ controller = RoleController()
 
 @roles_module.get('/')
 @token
-@role('administrator')
+@role()
 def get_all():
     return jsonify(controller.get_all(request.args)), 200
 @roles_module.get('/<string:role>')
 @token
-@role('administrator')
+@role()
 def show_user_by_rol(role):
     return jsonify(controller.get_by_rol(role))

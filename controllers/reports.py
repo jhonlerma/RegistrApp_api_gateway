@@ -15,16 +15,34 @@ class reports():
         headers = {
             "Content-Type": "application/json"
         }
-        response= requests.get(url=(f"{config['URL_RESULTS']}/reports/list"),json=data,headers=headers)
+        response= requests.get(url=(f"{config['URL_RESULTS']}/reports/"),json=data,headers=headers)
         if response.status_code == 200:
             return response.json(), 200
         return response.json() 
 
-    def get_by_id(self, id):
+    def get_by_table(self, args):
         headers = {
             "Content-Type": "application/json"
         }
-        response = requests.get(url=f"{config['URL_RESULTS']}/reports/{id}", headers=headers)
+        response = requests.get(url=f"{config['URL_RESULTS']}/reports/by_table?table={args['table']}", headers=headers)
+        if response.status_code == 200:
+            return response.json(), 200
+        return response.json(),400 
+
+    def get_by_candidate(self, args):
+        headers = {
+            "Content-Type": "application/json"
+        }
+        response = requests.get(url=f"{config['URL_RESULTS']}/reports/by_table?candidate={args['candidate']}", headers=headers)
+        if response.status_code == 200:
+            return response.json(), 200
+        return response.json() 
+
+    def get_by_table_candidate(self, args):
+        headers = {
+            "Content-Type": "application/json"
+        }
+        response = requests.get(url=f"{config['URL_RESULTS']}/reports/by_table?table={args['table']}&candidate{args['candidate']}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
         return response.json() 

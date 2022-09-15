@@ -7,43 +7,43 @@ controller = result()
 
 @result_module.get('/list')
 @token
-@role('administrator')
+@role()
 def get_result():
     return jsonify(controller.get_all(request.args)), 200
 
 @result_module.get('/<string:id>')
 @token
-@role('administrator')
+@role()
 def show_result_by_id(id):
     return jsonify(controller.get_by_id(id))
 @result_module.get('/table/<string:table>')
 @token
-@role('administrator')
+@role()
 def show_result_by_table(table):
     return jsonify(controller.get_by_table_id(table))
 
 @result_module.get('/candidate/<string:candidate>')
 @token
-@role('administrator')
+@role()
 def show_result_by_candidate(candidate):
     return jsonify(controller.get_by_nombre(candidate))
 
 @result_module.post('/<string:political_party_id>')
 @token
-@role('administrator')
+@role()
 def create_result(political_party_id):
     return jsonify(controller.create(request.get_json(), political_party_id)), 201
 
 @result_module.put('/<string:id>')
 @token
-@role('administrator')
+@role()
 def update_result(id):
     controller.update(id, request.get_json())
     return jsonify({}), 204
 
 @result_module.delete('/<string:id>')
 @token
-@role('administrator')
+@role()
 def delete_result(id):
     controller.delete(id)
     return jsonify({}), 204

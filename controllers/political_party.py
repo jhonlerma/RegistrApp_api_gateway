@@ -52,7 +52,6 @@ class political_party():
             "Content-Type": "application/json"
         }
         response = requests.post(url=f"{config['URL_RESULTS']}/political_party/{political_party}",json=data, headers=headers)
-        print(response.status_code)
         if response.status_code == 201:
             return response.json(), 200
         return response.json(), 400
@@ -62,7 +61,6 @@ class political_party():
         #     "Content-Type": "application/json"
         # }
         # response = requests.put(url=f"{config['URL_RESULTS']}/candidate/{id}",json=data, headers=headers)
-        # print(response.status_code)
         # if response.status_code == 201:
         #     return response.json(), 200
         # return response.json(), 400

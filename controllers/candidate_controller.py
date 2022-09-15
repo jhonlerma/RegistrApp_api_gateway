@@ -57,7 +57,6 @@ class CandidateController():
             "Content-Type": "application/json"
         }
         response = requests.post(url=f"{config['URL_RESULTS']}/candidate/{political_party}",json=data, headers=headers)
-        print(response.status_code)
         if response.status_code == 201:
             return response.json(), 200
         return response.json(), 400
