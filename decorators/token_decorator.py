@@ -4,13 +4,12 @@ from flask import request,jsonify
 from flask_jwt_extended import decode_token
 from dotenv import dotenv_values
 from werkzeug.datastructures import ImmutableMultiDict
-import traceback
 import requests
 
 config = dotenv_values('.env')
 def token(f):
     @wraps(f)
-    def decorated(args,*kwargs):
+    def decorated(*args,**kwargs):
         token= request.headers.get('Authorization','no hay token')
         parts= token.split()
         if parts[0] != 'Bearer':
@@ -20,9 +19,9 @@ def token(f):
         decoded= decode_token(parts[1])
         http_args= request.args.to_dict()
         http_args['user_id']= decoded['sub']
-        http_args['role']= decoded['role']
+        http_args['user_id']['role']= decoded['sub']['role']
         request.args= ImmutableMultiDict(http_args)
-        return f(args,*kwargs)
+        return f(*args,**kwargs)
     return decorated
 
 def role(role):
@@ -33,7 +32,7 @@ def role(role):
         headers = {
           "Content-Type": "application/json"
         }
-        response = requests.get(f"{config['URL_AUTH']}/roles/{role}", headers=headers)
+        response = requests.get(f"{config['URL_AUTH']}roles/{role}", headers=headers)
         if response.status_code == 200:
           permission = response.json()
           flag = False

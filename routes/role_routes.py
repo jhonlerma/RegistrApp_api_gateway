@@ -5,13 +5,13 @@ from decorators.token_decorator import token , role
 roles_module = Blueprint('roles', __name__)
 controller = RoleController()
 
+@roles_module.get('/')
 @token
 @role('administrator')
-@roles_module.get('/')
 def get_all():
     return jsonify(controller.get_all(request.args)), 200
+@roles_module.get('/<string:role>')
 @token
 @role('administrator')
-@roles_module.get('/<string:role>')
 def show_user_by_rol(role):
     return jsonify(controller.get_by_rol(role))
