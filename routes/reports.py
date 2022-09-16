@@ -28,5 +28,4 @@ def by_candidate():
 @token
 @role()
 def by_table_candidate():
-    controller.get_by_table_candidate(request.args.to_dict()), 200
-    return jsonify({}), 204
+    return jsonify(controller.get_by_table_candidate(request.args.to_dict())), 200

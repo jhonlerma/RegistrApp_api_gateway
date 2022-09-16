@@ -42,7 +42,7 @@ class reports():
         headers = {
             "Content-Type": "application/json"
         }
-        response = requests.get(url=f"{config['URL_RESULTS']}/reports/by_table?table={args['table']}&candidate{args['candidate']}", headers=headers)
+        response = requests.get(url=f"{config['URL_RESULTS']}/reports/by_table_candidate?table={args['table']}&candidate={args['candidate']}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
         return response.json() 
