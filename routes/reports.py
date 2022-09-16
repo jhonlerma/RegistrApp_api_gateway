@@ -15,6 +15,7 @@ def get_reports():
 @token
 @role()
 def by_table():
+    print(request.full_path)
     return jsonify(controller.get_by_table(request.args.to_dict())),200
 
 @reports_module.get('/by_candidate')
