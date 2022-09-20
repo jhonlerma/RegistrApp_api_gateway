@@ -33,7 +33,15 @@ class AuthContoller():
                 },200
         return {"message":"Credenciales invalidas"},401
         
-
+    def me(self, id):
+        headers = {
+        "Content-Type": "application/json"
+        }
+        response = requests.get(url=f"{config['URL_AUTH']}users/{id}", headers=headers)
+        if response.status_code == 200:
+            return response.json(), 200
+        return response.json(), 400
+    
     
         
     
