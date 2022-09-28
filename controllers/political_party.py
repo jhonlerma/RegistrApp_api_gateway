@@ -18,7 +18,7 @@ class political_party():
         response= requests.get(url=(f"{config['URL_RESULTS']}/political_party/list"),json=data,headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400
 
     def get_by_id(self, id):
         headers = {
@@ -27,7 +27,7 @@ class political_party():
         response = requests.get(url=f"{config['URL_RESULTS']}/political_party/{id}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400
 
     def get_by_lema_id(self, lema):
         headers = {
@@ -36,7 +36,7 @@ class political_party():
         response = requests.get(url=f"{config['URL_RESULTS']}/political_party/lema/{lema}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400
 
     def get_by_nombre(self, nombre):
         headers = {
@@ -45,7 +45,7 @@ class political_party():
         response = requests.get(url=f"{config['URL_RESULTS']}/political_party/nombre/{nombre}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400
 
     def create(self,data,political_party):
         headers = {

@@ -17,7 +17,7 @@ class RoleController():
         response= requests.get(url=(f"{config['URL_AUTH']}/roles/"),json=data,headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json(),
+        return response.json(),400
 
     def get_by_rol(self, role):
         exp_time= int(config['JWT_EXPIRATION'])
@@ -27,4 +27,4 @@ class RoleController():
         response = requests.get(url=f"{config['URL_AUTH']}/roles/{role}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json(),
+        return response.json(),400

@@ -18,7 +18,7 @@ class reports():
         response= requests.get(url=(f"{config['URL_RESULTS']}/reports/"),json=data,headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400
 
     def get_by_table(self, args):
         headers = {
@@ -36,7 +36,7 @@ class reports():
         response = requests.get(url=f"{config['URL_RESULTS']}/reports/by_table?candidate={args['candidate']}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400
 
     def get_by_table_candidate(self, args):
         headers = {
@@ -45,4 +45,4 @@ class reports():
         response = requests.get(url=f"{config['URL_RESULTS']}/reports/by_table_candidate?table={args['table']}&candidate={args['candidate']}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400 

@@ -19,7 +19,7 @@ class CandidateController():
         response= requests.get(url=(f"{config['URL_RESULTS']}/candidate/list"),json=data,headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400
 
     def get_by_id(self, id):
         exp_time= int(config['JWT_EXPIRATION'])
@@ -29,7 +29,7 @@ class CandidateController():
         response = requests.get(url=f"{config['URL_RESULTS']}/candidate/{id}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400
 
     def get_by_document_id(self, document):
         exp_time= int(config['JWT_EXPIRATION'])
@@ -39,7 +39,7 @@ class CandidateController():
         response = requests.get(url=f"{config['URL_RESULTS']}/candidate/document/{document}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400
 
     def get_by_resolution(self, resolution):
         exp_time= int(config['JWT_EXPIRATION'])
@@ -49,7 +49,7 @@ class CandidateController():
         response = requests.get(url=f"{config['URL_RESULTS']}/candidate/resolution/{resolution}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400
 
     def create(self,data,political_party):
         exp_time= int(config['JWT_EXPIRATION'])

@@ -19,4 +19,4 @@ class RolePermissionController():
         response= requests.get(url=(f"{config['URL_AUTH']}/role_permissions"),json=data,headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400

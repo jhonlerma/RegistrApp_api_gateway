@@ -18,7 +18,7 @@ class result():
         response= requests.get(url=(f"{config['URL_RESULTS']}/result/list"),json=data,headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400
 
     def get_by_id(self, id):
         headers = {
@@ -27,7 +27,7 @@ class result():
         response = requests.get(url=f"{config['URL_RESULTS']}/result/{id}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400
 
     def get_by_table_id(self, table):
         headers = {
@@ -36,7 +36,7 @@ class result():
         response = requests.get(url=f"{config['URL_RESULTS']}/political_party/table/{table}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400 
 
     def get_by_candidate(self, candidate):
         headers = {
@@ -45,4 +45,4 @@ class result():
         response = requests.get(url=f"{config['URL_RESULTS']}/political_party/candidate/{candidate}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json() 
+        return response.json(),400

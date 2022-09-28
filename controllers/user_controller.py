@@ -27,7 +27,7 @@ class UsersController():
         response = requests.get(url=f"{config['URL_AUTH']}/users/{id}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json(),
+        return response.json(),400
 
     
     def create(self, data):
@@ -38,7 +38,7 @@ class UsersController():
         response= requests.post(url=(f"{config['URL_AUTH']}/users/"),json=data,headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json(),
+        return response.json(),400
 
     def delete_by_id(self, id):
         exp_time= int(config['JWT_EXPIRATION'])
@@ -68,6 +68,6 @@ class UsersController():
         response = requests.get(url=f"{config['URL_AUTH']}/users/roles/{role}", headers=headers)
         if response.status_code == 200:
             return response.json(), 200
-        return response.json(),
+        return response.json(),400
 
 
